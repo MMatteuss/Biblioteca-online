@@ -9,17 +9,19 @@
 </head>
 <body>
     <form action="/uscad" method="POST">
-        <button type="submit" name="relatorio">Gerar</button>
+        <button type="submit" name="relatorio" class="bnt-cad">Gerar</button>
     </form>
-        <button><a href="/home">Voltar</a></button>
-        <button><a href="/">Sair</a></button>
+        <a href="/home">
+            <button type="submit" class="bnt-cad">Voltar</button>
+        </a>
         <br>
         <div class="tabelagrid">
             <table class="table">
                 <thead>
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col" style="text-align: center;">gmail</th>
+                    <th scope="col" style="text-align: center;">Nome</th>
+                    <th scope="col" style="text-align: center;">Gmail</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -28,6 +30,7 @@
                     <tr>
                         <th scope="row">{{ loop.index }}</th>
                         <td style="text-align: center;">{{ row[0] }}</td>
+                        <td style="text-align: center;">{{ row[1] }}</td>
                     </tr>
                     {% endfor %}
                 {% else %}
