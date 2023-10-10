@@ -1,3 +1,3 @@
-# sites-test001
-Teste de um site com python usando Flask
-Estou aprendendo mais como se usa o framework do Python chamado Flask. Essa ainda e a primeira verão dele, ainda falta colocar os estilos no arquivo CSS
+## Teste de uma Biblioteca feita em Python
+
+Será um projeto que pode desenvolver a lógica e melhorar minhas habilidades em back-end e front. E ele será uma biblioteca online bem simples para o usuário usar. Ainda estar em andamento!!
