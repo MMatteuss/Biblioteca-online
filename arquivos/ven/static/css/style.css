@@ -1,0 +1,104 @@
+body{
+    margin-left: -10px;
+    width: 100%;
+}
+
+header{
+    text-align: baseline;
+}
+
+.cabecalho{
+    display: flex;
+    justify-content: space-around;
+    width: auto;
+    align-items: center;
+    text-align: unset;
+    background-color: aquamarine;
+    margin-top: -5px;
+}
+
+summary{
+    text-align: left;
+    margin-left: 10px;
+}
+
+.menus{
+    text-align: center;
+    padding: 20px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+.menus ul li, a{
+    list-style-type: none;
+    text-decoration: none;
+    color: black;
+    margin-left: 10px;
+}
+.menus ul li a:hover{
+    color: rgb(160, 160, 160);
+}
+.menus ul{
+    text-align: center;
+    display: flex;
+}
+
+.pesquisa{
+    flex: 1;
+}
+
+main {
+    color: white;
+    display: flex; /* Ele quebra as barreiras */
+    background-color: #333;
+    margin-top: -10px;
+}
+
+.principal {
+    color: white;
+    width: 20%; /* largura para o lado esquerda */
+    border: 1px solid #999;
+    padding: 10px;
+    text-align: center;
+}
+
+article {
+    /* background-color: white; */
+    color: white;
+    border: 1px solid #999;
+    margin-top: 10px;
+    padding: 10px;
+    margin-left: 40px;
+    margin-right: 40px;
+    text-align: left;
+}
+article p:hover{
+    cursor: pointer;
+    color: rgb(194, 194, 194);
+}
+
+aside {
+    width: 60%; /* largura para o lado direito */
+    border: 1px solid #999;
+    padding: 10px;
+    text-align: center;
+}
+
+footer {
+    padding: 15px;
+    background-color: aquamarine;
+    color: rgb(0, 0, 0);
+    text-align: center;
+}
+footer a{
+    color: rgb(0, 0, 0);
+}
+footer a:hover{
+    color: rgb(136, 136, 136);
+}
+
+/* .fixarRodape {
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+    text-align: center;
+} */

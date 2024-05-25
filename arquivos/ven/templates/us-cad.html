@@ -9,7 +9,7 @@
 </head>
 <body>
     <form action="/uscad" method="POST">
-        <button type="submit" name="relatorio" class="bnt-cad">Gerar</button>
+        <button type="submit" name="relatorio" class="bnt-cad" id="btnAqui" onclick="clicarBotao()">Gerar</button>
     </form>
         <a href="/home">
             <button type="submit" class="bnt-cad">Voltar</button>
@@ -20,28 +20,33 @@
                 <thead>
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col" style="text-align: center;">Nome</th>
                     <th scope="col" style="text-align: center;">Gmail</th>
+                    <!-- <th scope="col" style="text-align: center;"></th> -->
                 </tr>
                 </thead>
                 <tbody>
                     {% if result %}
-                    {% for row in result %}
-                    <tr>
-                        <th scope="row">{{ loop.index }}</th>
-                        <td style="text-align: center;">{{ row[0] }}</td>
-                        <td style="text-align: center;">{{ row[1] }}</td>
-                    </tr>
-                    {% endfor %}
-                {% else %}
-                    <tr>
-                    <td colspan="4">Nenhum resultado encontrado.</td>
-                    </tr>
-                {% endif %}
+                        {% for row in result %}
+                        <tr>
+                            <th scope="row">{{ loop.index }}</th>
+                            <td style="text-align: center;">{{ row[0] }}</td>
+                            <!-- <td style="text-align: center;">{{ row[1] }}</td> -->
+                        </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                        <td colspan="4">Nenhum resultado encontrado.</td>
+                        </tr>
+                    {% endif %}
                 </tbody>
             </table>
         </div>
         <br>
     </form>
 </body>
+<script>
+    setInterval(function() {
+        document.getElementById("btnAqui").click();
+    }, 1000); 
+</script>
 </html>

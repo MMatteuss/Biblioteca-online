@@ -1,0 +1,19 @@
+main {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    width: 50%;
+    height: 480px;
+    margin: auto;
+    box-shadow: 0px 0px 10px black;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.text{
+    margin-top: 15px;
+    margin-left: 15px;
+    margin-right: 35px;
+}

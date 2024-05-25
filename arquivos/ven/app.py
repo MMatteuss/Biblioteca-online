@@ -1,22 +1,19 @@
 from flask import Flask, render_template, request, flash, request, redirect, url_for
 import psycopg2
-from flask_sqlalchemy import SQLAlchemy
 from psycopg2 import sql
-import os
 from werkzeug.utils import secure_filename
-from flask import send_from_directory, jsonify
-# import binascii
 
 
 app = Flask(__name__)
 
-db_config = {
+banco = {
     "dbname": "test",
     "user": "postgres",
     "password": "1234",
     "host": "localhost",
     "port": "5432"
 }
+
 
 # ====== LOGIN ======
 @app.route("/", methods=["GET", "POST"])
@@ -25,7 +22,7 @@ def index():
         gmail = request.form.get('gmail')
         senha = request.form.get('senha')
 
-        conn = psycopg2.connect(**db_config)
+        conn = psycopg2.connect(**banco)
         cursor = conn.cursor()
 
         query = sql.SQL("SELECT * FROM login WHERE gmail = %s AND senha = %s")
@@ -38,6 +35,29 @@ def index():
             return render_template('erro-index.html')
 
     return render_template('index.html')
+
+
+# Cadastro
+@app.route("/cadastro", methods=["GET", "POST"])
+def cadastroUsuario():
+    if request.method == "POST":
+        gmail = request.form.get('gmail')
+        senha = request.form.get('senha')
+        nome = request.form.get('nome')
+
+        conn = psycopg2.connect(**banco)
+        cursor = conn.cursor()
+
+        cursor.execute(sql.SQL("INSERT INTO login (gmail, senha, nome) values (%s, %s, %s)"), (gmail, senha, nome))
+        conn.commit()
+
+        cursor.close()  # Fechando o cursor
+        conn.close()  # Fechando a conexão
+
+        if(cursor):
+            return index()
+
+    return render_template('cadastro.html')
 
 
 # termos de privacidade
@@ -62,9 +82,10 @@ def home():
 def uscad():
     if request.method == 'POST':
         relatorio = request.form['relatorio']
-        conexao = psycopg2.connect(**db_config)
+
+        conexao = psycopg2.connect(**banco)
         cursor = conexao.cursor()
-        cursor.execute("SELECT nome, gmail FROM login")
+        cursor.execute("SELECT gmail FROM login")
         result = cursor.fetchall()
 
         conexao.close()  # Fechando a conexão
@@ -79,7 +100,7 @@ def uscad():
 def pdfs():
     if request.method == 'POST':
         relatorio = request.form['relatorio']
-        conexao = psycopg2.connect(**db_config)
+        conexao = psycopg2.connect(**banco)
         cursor = conexao.cursor()
         cursor.execute("SELECT nome_pdf, arquivo_pdf FROM pdf")
         result = cursor.fetchall()
@@ -90,6 +111,9 @@ def pdfs():
         return render_template('pdfs.html', result=None)
 
 
+# @app.route('/<nomeDesconhecido>' or '/termosdeprivacidade/<nomeDesconhecido>' or '/home/Cadastro<nomeDesconhecido>' or '/uscad/<nomeDesconhecido>' or '/pdfs/<nomeDesconhecido>')
+# def nomeDesconhecido(nomeDesconhecido):
+#     return render_template('erro.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
